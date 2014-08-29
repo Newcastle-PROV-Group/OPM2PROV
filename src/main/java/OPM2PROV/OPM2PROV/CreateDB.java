@@ -135,6 +135,12 @@ public class CreateDB {
 
 	// END SNIPPET: shutdownHook
 
+	/**
+	 *  node is a reference from the old database. 
+	 *  This method is used to add new nodes in the new database
+	 *   based on the given node.
+	 * @param node
+	 */
 	public static void addNode(Node node) {
 		if (node.hasProperty("TYPE")) {
 			String str = (String) node.getProperty("TYPE");
@@ -317,6 +323,12 @@ public class CreateDB {
 	}
 
 	// give a new node
+	/**
+	 * node is a reference from the old database. 
+	 * This method is used to add the relationships for the node 
+	 * .However the direction of the relationship is just OUTGOING.
+	 * @param node
+	 */
 	private static void addRelationship(Node node) {
 		if (node.hasRelationship(Direction.OUTGOING)) {
 			Iterable<Relationship> relationships = node
@@ -398,85 +410,18 @@ public class CreateDB {
 	}
 
 	// given a old node return a node from the new database.
+
+	/**
+	 * This method need a parameter node 
+	 * which is a node reference from the old database 
+	 * and return type is a node reference from the new database. 
+	 * This method will returns a reference from the new database
+	 *  based on the node from the old database.
+	 * @param node
+	 * @return
+	 */
 	private static Node getNode(Node node) {
 		return listNode.get(node.getId());
-		// System.out.println("get the node");
-		// String TYPE=node.getProperty("TYPE").toString();
-		// System.out.println(TYPE);
-		// Label labelentity = DynamicLabel.label("Entity");
-		// Label labelactivity = DynamicLabel.label("Activity");
-		//
-		// if (TYPE.equals("DataVersion")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// DataVersion dv = new DataVersion(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelentity, "escid",
-		// dv.getEscId()).iterator().next();
-		// // return escIdIndex.get("escid", dv.getVersionId())
-		// // .getSingle();
-		// } else if (TYPE.equals("Workflow Run")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// WorkflowRun wr = new WorkflowRun(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelactivity, "invocationId",
-		// wr.getInvocationId()).iterator().next();
-		// // return escIdIndex.get("invocationId",
-		// // wr.getInvocationId()).getSingle();
-		// } else if (node.getProperty("TYPE").equals("User")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// User u = new User(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelentity, "escid",
-		// u.getEscId()).iterator().next();
-		// // return escIdIndex.get("escid", u.getEscId()).getSingle();
-		// } else if (node.getProperty("TYPE").equals("Transient Data")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// TransientData td = new TransientData(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelentity, "id", td.getId())
-		// .iterator().next();
-		// // return escIdIndex.get("id", td.getId()).getSingle();
-		// } else if (node.getProperty("TYPE").equals("Workflow Version")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// WorkflowVersion wv = new WorkflowVersion(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelentity, "escid",
-		// wv.getEscId()).iterator().next();
-		// // return escIdIndex
-		// // .get("versionId", wv.getVersionId())
-		// // .getSingle();
-		// } else if (node.getProperty("TYPE").equals("Library")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// Library li = new Library(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelentity, "escid",
-		// li.getEscId()).iterator().next();
-		// } else if (node.getProperty("TYPE").equals("Service Version")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// ServiceVersion sv = new ServiceVersion(node);
-		// return graphDb
-		// .findNodesByLabelAndProperty(labelentity, "escid",
-		// sv.getEscId()).iterator().next();
-		// } else if (node.getProperty("TYPE").equals("Service Run")) {
-		// System.out.println("<<<<<<" + node.getProperty("TYPE"));
-		// ServiceRun sr = new ServiceRun(node);
-		// // ResourceIterator<Node> iter = escIdIndex.get(
-		// // "invocationId", sr.getInvocationId()).iterator();
-		// ResourceIterator<Node> iter = graphDb.findNodesByLabelAndProperty(
-		// labelactivity, "invocationId", sr.getInvocationId())
-		// .iterator();
-		//
-		// while (iter.hasNext()) {
-		// Node non = iter.next();
-		// if (non.hasProperty("blockUUID")
-		// && non.getProperty("blockUUID").equals(
-		// sr.getBlockUuid())&&non.hasProperty("startTime")) {
-		// return non;
-		// }
-		// }
-		// }
-		// // 少了一些项 Service Run 找不到
-		//
-		// return null;
+		
 	}
 }
